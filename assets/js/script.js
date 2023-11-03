@@ -152,7 +152,7 @@ function getRandom(arr) {
 
 // Function to generate password with user input
 function generatePassword() {
-  
+  password = '';
   for (i = 0; i < passwordLength; i++) {
     password += getRandom(passwordCharacters);
  }
