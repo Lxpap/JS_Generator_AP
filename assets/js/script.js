@@ -99,9 +99,10 @@ function getPasswordOptions() {
 
   passwordLength = parseInt(prompt("Please enter a password length between 8 and 128 characters"));
   
-  if (passwordLength < 8 || passwordLength > 128) {
+  if (passwordLength < 8 || passwordLength > 128 || passwordLength.valueOf.length == 0) {
     alert("Length must be between 8 and 128 characters.");
     return;
+
   }
 
 
