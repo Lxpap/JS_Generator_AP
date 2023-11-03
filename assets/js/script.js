@@ -90,24 +90,21 @@ var upperCasedCharacters = [
 
 var generate = document.getElementById("generate");
 var passwordLength;
-var password = "";
-var passwordCharacters = "";
-var passwordLength;
-var randomChars;
+var password = '';
+var passwordCharacters = [];
 
 
 // Function to prompt user for password options
 function getPasswordOptions() {
 
-  var passwordLength = prompt("Please enter a password length between 8 and 128 characters");
-  passwordLength.length = parseInt(passwordLength);
-
+  passwordLength = parseInt(prompt("Please enter a password length between 8 and 128 characters"));
+  
   if (passwordLength < 8 || passwordLength > 128) {
     alert("Length must be between 8 and 128 characters.");
     return;
   }
 
-  
+
   var useLowerCase = confirm("Would you like to include lowercase characters?");
   var useUpperCase = confirm("Would you like to include uppercase characters?");
   var useNumbers = confirm("Would you like to include numbers?");
@@ -118,53 +115,59 @@ function getPasswordOptions() {
     return;
   }
 
+  
+  if (useLowerCase) {
+    passwordCharacters.push(...lowerCasedCharacters);
+  }
+
+  if (useUpperCase) {
+    passwordCharacters.push(...upperCasedCharacters);
+  }
+
+  if (useNumbers) {
+    passwordCharacters.push(...numericCharacters);
+  }
+
+  if (useSpecial) {
+    passwordCharacters.push(...specialCharacters);
+  }
+
+  generatePassword();
+
 }
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-
- if (useLowerCase) {
-  passwordCharacters += lowerCasedCharacters;
- }
-
- if (useUpperCase) {
-  passwordCharacters += upperCasedCharacters;
- }
-
- if (useNumbers) {
-  passwordCharacters += numericCharacters;
- }
-
- if (useSpecial) {
-  passwordCharacters += specialCharacters;
- }
+  var randomIndex = Math.floor(Math.random() * arr.length);
+  return arr[randomIndex];
 
 }
 
 // Function to generate password with user input
 function generatePassword() {
-
-  for (var i = 0; i < passwordLength; i++) {
-    var randomChars = Math.floor(Math.random() * passwordCharacters.length);
-    password += passwordCharacters.charAt(randomChars);
-  }
-
-  return password;
-
+  
+  for (i = 0; i < passwordLength; i++) {
+    password += getRandom(passwordCharacters);
+ }
+   return password;
 }
 
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
+var passwordText = document.querySelector('#password');
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector('#password');
-
-  passwordText.textContent = password;
+  getPasswordOptions();
+  passwordText.textContent = password; 
+  document.getElementById("password").value = password;
+   
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener('click', writePassword);
-generateBtn.addEventListener('click', getPasswordOptions);
+generateBtn.addEventListener('click', function() {
+writePassword();
+});
+
+
