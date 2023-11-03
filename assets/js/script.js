@@ -88,8 +88,32 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+var generate = document.getElementById("generate");
+var passwordLength;
+
+
+
 // Function to prompt user for password options
 function getPasswordOptions() {
+
+  var passwordLength = prompt("Please enter a password length between 8 and 128 characters");
+  passwordLength.length = parseInt(passwordLength);
+
+  if (passwordLength < 8 || passwordLength > 128) {
+    alert("Length must be between 8 and 128 characters.");
+    return;
+  }
+
+  
+  var alertLowerCase = confirm("Would you like to include lowercase characters?");
+  var alertUpperCase = confirm("Would you like to include uppercase characters?");
+  var alertNumbers = confirm("Would you like to include numbers?");
+  var alertSpecial = confirm("And finally, would you like to include special characters?");
+
+  if (!(alertLowerCase || alertUpperCase || alertNumbers || alertSpecial)) {
+    alert("Please select a minimum of one character type.");
+    return;
+  }
 
 }
 
@@ -116,3 +140,4 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener('click', writePassword);
+generateBtn.addEventListener('click', getPasswordOptions);
