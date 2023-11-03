@@ -13,7 +13,7 @@ No installation is necessary for this application.
 In order to use this application, start by clicking on the "Generate Password" button. You will be asked about your desired length (it can be between 8 and 128 characters), as well as character sets that you would like the generator to use (these are lower case letters, upper case letters, numbers and special characters). It is recommended to use all 4 character types and a length of over 12 for your security. 
 
    
-    ![Generator Screenshot](./assets/images/Screenshot.PNG)
+![Generator Screenshot](./assets/images/Screenshot.PNG)
    
 
 ## Credits
