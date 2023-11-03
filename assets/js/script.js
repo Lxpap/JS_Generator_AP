@@ -95,14 +95,20 @@ var passwordCharacters = [];
 
 
 // Function to prompt user for password options
+
 function getPasswordOptions() {
+  var input = prompt("Please enter a password length between 8 and 128 characters");
 
-  passwordLength = parseInt(prompt("Please enter a password length between 8 and 128 characters"));
-  
-  if (passwordLength < 8 || passwordLength > 128 || passwordLength.valueOf.length == 0) {
-    alert("Length must be between 8 and 128 characters.");
+  if (!input) {
+    alert("Password length cannot be empty.");
     return;
+  }
 
+  passwordLength = parseInt(input);
+
+  if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
+    alert("Length must be a valid number between 8 and 128 characters.");
+    return;
   }
 
 
