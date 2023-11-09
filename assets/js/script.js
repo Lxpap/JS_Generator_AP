@@ -97,6 +97,7 @@ var passwordCharacters = [];
 // Function to prompt user for password options
 
 function getPasswordOptions() {
+  passwordCharacters = [];
   var input = prompt("Please enter a password length between 8 and 128 characters");
 
   if (!input) {
